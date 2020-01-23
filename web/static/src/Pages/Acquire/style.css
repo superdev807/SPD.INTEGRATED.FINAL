@@ -1,0 +1,13 @@
+input {
+    height: 1.1875em;
+    font: inherit;
+    width: 100%;
+    border: 0;
+    padding: 20px;
+    display: block;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    border-bottom: 1px solid gray;
+    margin-left:50px;
+}

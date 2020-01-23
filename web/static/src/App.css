@@ -1,0 +1,43 @@
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+ .sc-bdVaJa.sc-bwzfXH.dBxpHq{
+   background:whitesmoke;
+   border-top:3px solid gray;
+   border-bottom:3px solid gray;
+   opacity:0.5;
+   color:black;
+
+ }
+ .sc-bdVaJa.sc-htoDjs.fLbdjv.sc-bwzfXH.jruoDg{
+   background:whitesmoke;
+   color:black;
+ }
+
+ .sc-bdVaJa.sc-bwzfXH.gMMBhP{
+   color:black;
+ }
+
+ .FormComponent__PayButton-wwig0v-0.gXAVlO{
+   background: whitesmoke;
+   color:black;
+ }
+ .MUIDataTableToolbar-actions-115{
+  position:absolute;
+ }
+ .MUIDataTableToolbar-actions-322{
+  position:absolute;
+ }
+ .MUIDataTableToolbar-actions-333{
+   position:absolute;
+   
+ }
+ .MuiTypography-root-63.MuiTypography-h4-78.MuiTypography-gutterBottom-90.ProTier-header-330{
+   width:800px;
+   text-align: right
+
+
+ }
