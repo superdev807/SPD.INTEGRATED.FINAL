@@ -1,0 +1,87 @@
+{
+	"status": "success",
+	"user": {
+		"is_logged_in": true,
+		"is_group_member": false,
+		"is_group_admin": false,
+		"group": "A New Group Name@",
+		"subscrtion_type": "Some Subscription Name",
+		"subscription_expiration": "April 01, 2019",
+		"subscription_created": "March 01, 2019"
+	}
+}
+
+/* 
+
+
+----------------------------------------------------
+-- Success Responses:
+----------------------------------------------------
+{
+	"status": "success",
+	"user": {
+		"is_logged_in": true,
+		"is_group_member": true/false,
+		"is_group_admin": true/false,
+		"group": [Null] or "Some Group Name ",
+		"subscrtion_type": "Some Subscription Name",
+		"subscription_expiration": "April 01, 2019",
+		"subscription_created": "March 01, 2019"
+	}
+}
+
+-- Notes:
+------------------- 
+- Display On Data-Explorer Dashboard NavBar:
+	- "subscrtion_type"
+	- "subscription_expiration"
+	- "subscription_created"
+	- and if "group_member" is TRUE
+
+- if "group_admin" is TRUE:
+	- make available the "group maintenance" page 
+		- so that user can edit it
+	
+
+
+----------------------------------------------------
+-- Failure Respones:
+----------------------------------------------------
+
+-- Incorrect Email 
+{
+	"status": "fail",
+	"error": "Not A Registered User!"
+	"tried": {
+		"user_email": "something@gmail.com",
+		"user_password": "somePassword"
+	}
+}
+
+-- Incorrect Group Password Password:
+{
+	"status": "fail",
+	"error": "Incorrect Group Password"
+	"tried": {
+		"user_email": "something@gmail.com",
+		"user_password": "somePassword",
+		"group_password": "someGroupPassword"
+	}
+}
+
+-- Incorrect User Password Password:
+{
+	"status": "fail",
+	"error": "Incorrect User Password"
+	"tried": {
+		"user_email": "something@gmail.com",
+		"user_password": "somePassword",
+		"group_password": "someGroupPassword"
+	}
+}
+
+
+
+
+
+*/

@@ -1,0 +1,114 @@
+{
+	"subscription": {
+		"duration": "",
+		"cost": "",
+		"user_type": "",
+		"Access": ""
+	},
+	"creator_user": {
+		"user": {
+			"email": "",
+			"password": "",
+			"confirm": "",
+			"group_name": ""
+
+		},
+		"meta": {
+			"Company Name": "",
+			"Job Title": "",
+			"Years of Industry Experience": ""
+		}
+	},
+	"group_members": [
+		{
+			"user": {
+				"email": "",
+				"assigned_password": "",
+				"assigned_confirm": ""
+				
+			},
+			"meta": {
+				"meta": {
+					"Company Name": "",
+					"Job Title": "",
+					"Years of Industry Experience": ""
+				}
+			}
+		},
+		{
+			"user": {
+				"email": "",
+				"assigned_password": "",
+				"assigned_confirm": ""
+				
+			},
+			"meta": {
+				"meta": {
+					"Company Name": "",
+					"Job Title": "",
+					"Years of Industry Experience": ""
+				}
+			}
+		},
+		{
+			"user": {
+				"email": "",
+				"assigned_password": "",
+				"assigned_confirm": ""
+				
+			},
+			"meta": {
+				"meta": {
+					"Company Name": "",
+					"Job Title": "",
+					"Years of Industry Experience": ""
+				}
+			}
+		},
+		{
+			"user": {
+				"email": "",
+				"assigned_password": "",
+				"assigned_confirm": ""
+				
+			},
+			"meta": {
+				"meta": {
+					"Company Name": "",
+					"Job Title": "",
+					"Years of Industry Experience": ""
+				}
+			}
+		},
+		{
+			"user": {
+				"email": "",
+				"assigned_password": "",
+				"assigned_confirm": ""
+				
+			},
+			"meta": {
+				"meta": {
+					"Company Name": "",
+					"Job Title": "",
+					"Years of Industry Experience": ""
+				}
+			}
+		},
+		{
+			"user": {
+				"email": "",
+				"assigned_password": "",
+				"assigned_confirm": ""
+				
+			},
+			"meta": {
+				"meta": {
+					"Company Name": "",
+					"Job Title": "",
+					"Years of Industry Experience": ""
+				}
+			}
+		}
+	]
+}

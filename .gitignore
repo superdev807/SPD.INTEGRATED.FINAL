@@ -1,0 +1,12 @@
+/env
+.DS_Store
+*__pycache__
+
+/env-all
+/env
+/env_django_and_flask_mongo
+
+/web/src/app/env_flask
+/web/src/app/env_new_flask
+/web/src/app/env_test
+

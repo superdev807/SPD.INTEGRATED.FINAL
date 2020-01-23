@@ -1,0 +1,1 @@
+# from .models import pharmacies as script_pharma

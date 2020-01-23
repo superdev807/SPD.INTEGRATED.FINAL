@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+branch_name=$(git symbolic-ref --short -q HEAD)
+echo '___________________________'
+echo 'Repo Branch::' $branch_name
+echo '___________________________'
+
+echo ' .. Lets Build This Server !'
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install python3-pip
+sudo pip3 install virtualenv
+

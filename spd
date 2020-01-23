@@ -1,0 +1,196 @@
+#!/usr/bin/env bash
+
+branch_name=$(git symbolic-ref --short -q HEAD)
+echo '___________________________'
+echo 'Repo Branch::' $branch_name
+echo '___________________________'
+
+## write application environment variables
+##-----------------------------
+function envvarbs {
+    echo '-- {{Moving onTo other EnvVArbs}} --'
+    
+    if [ $1 = "local" ]; then
+        source conf/env.varbs/local.sh
+        echo '-- {{ Sourced env.varbs from [conf/env.varbs/local.sh] }} --'
+
+    elif [ $1 = "dev" ]; then
+        source conf/env.varbs/dev.sh
+        echo '-- {{ Sourced env.varbs from [conf/env.varbs/dev.sh] }} --'
+
+    else
+        source conf/env.varbs/prod.sh
+        echo '-- {{ Sourced env.varbs from [conf/env.varbs/prod.sh] }} --'
+    
+    fi
+}
+
+## LAUNCH -- Gunicorn Web Server/Django Server
+##-----------------------------
+function launch {
+
+    ## -- Django Development Server
+	if [ $1 = "prod" ]; then
+        echo "{{__ Starting Gunicorn Web Server__}}"
+        envvarbs $1
+        echo '-- {{envvarbs!}} -- {{' $1 '}}'
+        printf '\n'
+        
+        source env/bin/activate
+        pushd web
+            cd src/
+            gunicorn --workers 2 --bind localhost:8000 main.wsgi:application
+            #gunicorn --workers 2 --bind unix:/home/richael/mysite/src/mysite.sock main.wsgi:application
+        popd
+
+    ## -- Gunicorn web server/django server
+    else
+        
+        echo '-- {{Kick Off with Django Development Server!}} -- {{' $1 '}}'
+        envvarbs $1
+        echo '-- {{envvarbs!}} -- {{' $1 '}}'
+        printf '\n'
+
+        source env/bin/activate
+        # source web/web_env/bin/activate
+        
+        pushd web
+            printf '\n'
+            echo '---------------------------'
+            echo '-- Installed Python Packages: '
+            pip list
+            echo '---------------------------' 
+            printf '\n'
+
+            # python3.6 src/manage.py check
+            # python3.6 src/manage.py runserver
+            python3.7 src/manage.py check
+            python3.7 src/manage.py runserver
+        
+        popd
+    fi
+}
+
+
+case ${@:1:1} in
+
+    ## -------------- 
+    # TODO:
+    # -- build script for npm build
+    # -- install npm dependencies
+    # -- install python dependencies
+    # -- launch django with npm
+    
+    build-site-packages)
+            rm -rf env
+    		echo '-- {{Deleted env}} --'
+            printf '\n'
+
+            python3.7 -m venv env   
+    		echo '-- {{Created env dir}} --'
+            printf '\n'
+            
+            source env/bin/activate
+    		echo '-- {{Activated virtual env @ env}} --'
+            printf '\n'
+            
+            pip install -r stimulus-requirements.txt
+            echo '-- {{Successfully Installed pip requirements}} --'
+            
+            deactivate
+    		echo '-- {{Finished building PIP packages}} --'
+        ;;
+
+    check)
+            envvarbs $2
+            echo '-- {{envvarbs!}} -- {{' $2 '}}'
+            printf '\n'
+
+            source env/bin/activate
+            pushd web
+            echo '-- {{Activated env!}} --'
+                printf '\n'
+                python3.7 src/manage.py check
+            popd
+            deactivate
+            printf '\n'
+            echo '-- {{Django is Ready!}} --'
+    ;;
+
+    make-migs)
+            envvarbs $2
+            echo '-- {{envvarbs!}} -- {{' $2 '}}'
+            printf '\n'
+
+            source env/bin/activate
+            pushd web
+                python3.7 src/manage.py makemigrations
+                
+                printf '\n'
+                echo '-- {{Made Migration Files!}} --'
+            popd
+            deactivate
+    ;;
+
+    migrate)
+            envvarbs $2
+            echo '-- {{envvarbs!}} -- {{' $2 '}}'
+            printf '\n'
+
+            source env/bin/activate
+            pushd web
+                python3.7 src/manage.py migrate
+                echo '-- {{Migrated Necessary Changes!}} --'
+            popd
+            deactivate
+    ;;
+
+	super-user)
+            envvarbs $2
+            echo '-- {{envvarbs!}} -- {{' $2 '}}'
+
+            source env/bin/activate
+            pushd web
+                python3.7 src/manage.py createsuperuser   
+                echo '-- {{Created Super User!}} --'
+            popd
+            deactivate
+    ;;
+
+    static)
+            envvarbs $2
+            echo '-- {{envvarbs!}} -- {{' $2 '}}'
+
+            push web
+                source env/bin/activate
+                python3.6 src/manage.py collectstatic
+                deactivate
+                echo '-- {{Collected Static Files}} --'
+            popd
+    ;;
+
+    data)
+            envvarbs $2
+            echo '-- {{envvarbs!}} -- {{' $2 '}}'
+
+            source env/bin/activate
+            pushd tasks
+                python3.7 load_spd_data.py 
+            popd
+            # pushd tasks
+            #     python3.7 load_spd_data.py 
+            # popd
+            deactivate
+            
+    ;;
+
+    up)
+            # Choose An Environ To Launch Django In
+            launch $2
+    ;;
+
+	*)
+			echo 'See the README.md to see how to use this file'
+	;;
+
+esac

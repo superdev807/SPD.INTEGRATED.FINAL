@@ -1,0 +1,12 @@
+http {
+        server_names_hash_bucket_size  64;
+        server {
+                listen 80;
+                server_name ec2-18-218-191-238.us-east-2.compute.amazonaws.com;
+
+                location / {
+                        include proxy_params;
+                        proxy_pass http://localhost:5000;
+                }
+        }
+}

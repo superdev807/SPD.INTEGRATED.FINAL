@@ -1,0 +1,18 @@
+{
+	"user": {
+		"email": "",
+		"password": "",
+		"confirm": "",
+		"group_name": ""
+	},
+	"meta": {
+		"Company Name": "",
+		"Job Title": "",
+		"Years of Industry Experience": ""
+	},
+	"subscription": {
+		"duration": "",
+		"cost": "",
+		"user_type": ""
+	}
+}

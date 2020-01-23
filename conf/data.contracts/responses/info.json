@@ -1,0 +1,283 @@
+{
+	"status": "success",
+	"info": {
+		"columns":["Access", "Duration", "User Type", "Cost", "Number Of Records", "Re-newable", "Trial"],
+		"data": [
+			{
+				"Access": "Basic",
+				"Duration": "7 Days",
+				"User Type": "Single",
+				"Cost": "$100",
+				"Number Of Records": "50",
+				"Re-newable": "Yes",
+				"Trial": "Yes",
+				"Description": "BALL IS LIFE : ))"
+			},
+			{
+				"Access": "Pro",
+				"Duration": "7 Days",
+				"User Type": "Single",
+				"Cost": "$149",
+				"Number Of Records": "25",
+				"Re-newable": "Yes",
+				"Trial": "Yes",
+				"Description": "BALL IS LIFE : ))"
+			},
+			{
+				"Access": "Basic",
+				"Duration": "1 Month",
+				"User Type": "Single",
+				"Cost": "$500",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Pro",
+				"Duration": "1 Month",
+				"User Type": "Single",
+				"Cost": "$1000",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Basic",
+				"Duration": "12 Months",
+				"User Type": "Single",
+				"Cost": "$1,250",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Pro",
+				"Duration": "12 Months",
+				"User Type": "Single",
+				"Cost": "$3,500",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Basic",
+				"Duration": "7 Days",
+				"User Type": "Multi (6 Max)",
+				"Cost": "$250",
+				"Number Of Records": "50",
+				"Re-newable": "Yes",
+				"Trial": "Yes",
+				"Description": "BALL IS LIFE : ))"
+			},
+			{
+				"Access": "Pro",
+				"Duration": "7 Days",
+				"User Type": "Multi (6 Max)",
+				"Cost": "$750",
+				"Number Of Records": "25",
+				"Re-newable": "Yes",
+				"Trial": "Yes",
+				"Description": "BALL IS LIFE : ))"
+			},
+			{
+				"Access": "Basic",
+				"Duration": "1 Month",
+				"User Type": "Multi (6 Max)",
+				"Cost": "$1,250",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Pro",
+				"Duration": "1 Month",
+				"User Type": "Multi (6 Max)",
+				"Cost": "$2,750",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Basic",
+				"Duration": "12 Months",
+				"User Type": "Multi (6 Max)",
+				"Cost": "$3,500",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			},
+			{
+				"Access": "Pro",
+				"Duration": "12 Months",
+				"User Type": "Multi (6 Max)",
+				"Cost": "$11,500",
+				"Number Of Records": "Entire Database",
+				"Re-newable": "Yes",
+				"Trial": "No",
+				"Description": "BALL IS LIFE : ))"
+
+			}
+		]
+	},
+	"mock": [
+		{
+			"type": "Basic",
+			"columns": [
+				"Pharmacy Name", "URL", "Street Address", "City", "State", 
+				"Zip", "Phone", "Conditions", "Company Type"
+			],
+			"data": [
+				{
+					"Pharmacy Name": "Tobias Harris Pharmacy", 
+					"URL": "tobias_harris.com", 
+					"Street Address": "Tobias Harris Championship Way", 
+					"City": "Tobias Harris City", 
+					"State": "Tobias Harris State", 
+					"Zip": "Tobias Harris Zip", 
+					"Phone": "Tobias Harris Phone", 
+					"Conditions": "Tobias Harris Conditions", 
+					"Company Type": "Tobias Harris Company Type"
+				},
+				{
+					"Pharmacy Name": "JJ Reddick Pharmacy", 
+					"URL": "jj_reddick.com", 
+					"Street Address": "JJ Reddick Championship Way", 
+					"City": "JJ Reddick City", 
+					"State": "JJ Reddick State", 
+					"Zip": "JJ Reddick Zip", 
+					"Phone": "JJ Reddick Phone", 
+					"Conditions": "JJ Reddick Conditions", 
+					"Company Type": "JJ Reddick Company Type"
+				},
+				{
+					"Pharmacy Name": "Mike Scott Pharmacy", 
+					"URL": "mike_scott.com", 
+					"Street Address": "Mike Scott Championship Way", 
+					"City": "Mike Scott City", 
+					"State": "Mike Scott State", 
+					"Zip": "Mike Scott Zip", 
+					"Phone": "Mike Scott Phone", 
+					"Conditions": "Mike Scott Conditions", 
+					"Company Type": "Mike Scott Company Type"
+				}
+			]
+		},
+		{
+			"type": "Pro",
+			"columns": [
+				"Pharmacy Name", "URL", "Street Address", "City", "State", "Zip", "Phone", "Conditions", "Company Type",
+				"Pharmacy Contact", "Contact email", "Accreditation", "Owner/Independent", "Patient Services", "Payer Services", 
+				"Pharma Services", "Locations", "Limited Distribution Drugs"
+			],
+			"data": [
+				{
+					"Pharmacy Name": "Ben Simmons Pharmacy", 
+					"URL": "ben_simmons.com", 
+					"Street Address": "Ben Simmons Championship Way", 
+					"City": "Ben Simmons City", 
+					"State": "Ben Simmons State", 
+					"Zip": "Ben Simmons Zip", 
+					"Phone": "Ben Simmons Phone", 
+					"Conditions": "Ben Simmons Conditions", 
+					"Company Type": "Ben Simmons Company Type",
+					"Pharmacy Contact": "Ben Simmons Contact", 
+					"Contact email": "Ben Simmons@email.com", 
+					"Accreditation": "Ben Simmons Accreditation", 
+					"Owner/Independent": "Ben Simmons Owned", 
+					"Patient Services": "Ben Simmons Services", 
+					"Payer Services": "Ben Simmons Payer", 
+					"Pharma Services": "Ben Simmons Pharma Services", 
+					"Locations": "Ben Simmons Locations", 
+					"Limited Distribution Drugs": "Ben Simmons Distribution"
+				},
+				{
+					"Pharmacy Name": "Joel Embiid Pharmacy", 
+					"URL": "Joel_Embiid.com", 
+					"Street Address": "Joel Embiid Championship Way", 
+					"City": "Joel Embiid City", 
+					"State": "Joel Embiid State", 
+					"Zip": "Joel Embiid Zip", 
+					"Phone": "Joel Embiid Phone", 
+					"Conditions": "Joel Embiid Conditions", 
+					"Company Type": "Joel Embiid Company Type",
+					"Pharmacy Contact": "Joel Embiid Contact", 
+					"Contact email": "Joel Embiid@email.com", 
+					"Accreditation": "Joel Embiid Accreditation", 
+					"Owner/Independent": "Joel Embiid Owned", 
+					"Patient Services": "Joel Embiid Services", 
+					"Payer Services": "Joel Embiid Payer", 
+					"Pharma Services": "Joel Embiid Pharma Services", 
+					"Locations": "Joel Embiid Locations", 
+					"Limited Distribution Drugs": "Joel Embiid Distribution"
+				},
+				{
+					"Pharmacy Name": "Jimmy Butler Pharmacy", 
+					"URL": "jimmy_butler.com", 
+					"Street Address": "Jimmy Butler Championship Way", 
+					"City": "Jimmy Butler City", 
+					"State": "Jimmy Butler State", 
+					"Zip": "Jimmy Butler Zip", 
+					"Phone": "Jimmy Butler Phone", 
+					"Conditions": "Jimmy Butler Conditions", 
+					"Company Type": "Jimmy Butler Company Type",
+					"Pharmacy Contact": "Jimmy Butler Contact", 
+					"Contact email": "Jimmy Butler@email.com", 
+					"Accreditation": "Jimmy Butler Accreditation", 
+					"Owner/Independent": "Jimmy Butler Owned", 
+					"Patient Services": "Jimmy Butler Services", 
+					"Payer Services": "Jimmy Butler Payer", 
+					"Pharma Services": "Jimmy Butler Pharma Services", 
+					"Locations": "Jimmy Butler Locations", 
+					"Limited Distribution Drugs": "Jimmy Butler Distribution"
+				}
+			]
+		}
+			
+	]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
