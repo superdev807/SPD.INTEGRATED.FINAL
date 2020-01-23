@@ -8,4 +8,4 @@ psycopg2==2.7.5
 pydash==4.7.3
 pytz==2018.5
 requests==2.19.1
-urllib3==1.23
+urllib3==1.24.2
