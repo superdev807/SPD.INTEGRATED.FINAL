@@ -3,7 +3,8 @@ var request = require("request");
 var options = { method: 'POST',
   url: 'http://localhost:5000/api/v1/auth/create',
   headers: 
-   { 'cache-control': 'no-cache',
+   { 'Postman-Token': '7fdb6194-6529-428d-8d47-2acdaaeb50b1',
+     'cache-control': 'no-cache',
      'Content-Type': 'application/json' },
   body: 
    { hash: 'dsgfsfdfdsfds',

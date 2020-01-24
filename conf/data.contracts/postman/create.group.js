@@ -3,13 +3,15 @@ var request = require("request");
 var options = { method: 'POST',
   url: 'http://localhost:5000/api/v1/auth/create',
   headers: 
-   { 'Content-Type': 'application/json' },
+   { 'Postman-Token': '5377f1dd-4354-43cf-ab4e-76dd83bf8038',
+     'cache-control': 'no-cache',
+     'Content-Type': 'application/json' },
   body: 
    { hash: 'dsgfsfdfdsfds',
      trans_id: '2118ba40-21bc-4a76-a8fa-bab5a6b42709',
      auth_id: 'adfadfsdfdsfg',
-     sub_id: '135c5ff4-0093-4a22-a2c8-6913d29688c4',
-     pg_id: '5',
+     sub_id: '4980d0e4-40ac-4e28-b902-e16363f34095',
+     pg_id: '2',
      type: 'multi',
      group_name: 'Philly.Group!',
      group_password: 'Philly.Group!.password',
