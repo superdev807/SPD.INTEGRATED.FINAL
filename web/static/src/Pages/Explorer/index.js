@@ -1,7 +1,7 @@
 import React, {useEffect,useContext } from "react";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../components/Navbar";
 import MUIDataTable from "mui-datatables";
-import Loader from "../../Components/Loaders";
+import Loader from "../../components/Loaders";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { Typography, withStyles, Grid } from "../../../node_modules/@material-ui/core";
 import {styles,centerLoader,containerStyle,getMuiTheme} from './styles'

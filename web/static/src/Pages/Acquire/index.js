@@ -1,12 +1,12 @@
 import React, { useRef,useEffect,useContext } from "react";
 import JssProvider from "react-jss/lib/JssProvider";
 import MaterialUIForm from "react-material-ui-form";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../components/Navbar";
 import Grid from "@material-ui/core/Grid";
 import Icon from "@material-ui/core/Icon";
 import { FormComponent, FormContainer } from "react-authorize-net";
-import AddGroupMember from "../../Components/AddGroupMember";
-import ReactAuthorizeForm from "../../Components/React-Authorize.js";
+// import AddGroupMember from "../../Components/AddGroupMember";
+// import ReactAuthorizeForm from "../../Components/React-Authorize.js";
 //Material UI Components
 import { withStyles, Button, TextField } from "@material-ui/core";
 import {store} from '../../Store/'
