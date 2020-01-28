@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "../Components/Navbar";
+import Navbar from "../components/Navbar";
 import { Typography } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import Loader from "./Loaders";

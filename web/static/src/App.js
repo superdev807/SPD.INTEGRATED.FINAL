@@ -1,13 +1,13 @@
 import React from 'react';
-import Login from './Components/authentication/Login';
+import Login from './components/authentication/Login';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import ButtonAppBar from './Components/Navbar'
+import ButtonAppBar from './components/Navbar'
 import Info from './Pages/Info/'
 import Acquire from './Pages/Acquire/'
 import Explorer from './Pages/Explorer/'
 import AppContext from  './AppData'
 import ManageUsers from './Pages/ManageUsers'
-import GroupLogin from './Components/authentication/GroupSignIn'
+import GroupLogin from './components/authentication/GroupSignIn'
 import CSS from './App.css'
 import {StateProvider} from './Store'
 

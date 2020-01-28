@@ -1,7 +1,7 @@
 import * as React from "react";
 import Paper from "@material-ui/core/Paper";
 import { EditingState } from "@devexpress/dx-react-grid";
-import NavBar from "../Components/Navbar";
+import NavBar from "../components/Navbar";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import {
   Grid,

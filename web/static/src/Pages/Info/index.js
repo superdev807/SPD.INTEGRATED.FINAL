@@ -1,12 +1,12 @@
 import React, {useContext,useEffect} from "react";
-import Navbar from "../../Components/Navbar";
+import Navbar from "../../components/Navbar";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import Tier from "../../Components/Tiers/";
-import BasicTier from "../../Components/basicTier";
-import ProTier from "../../Components/ProTier";
-import Loader from "../../Components/Loaders";
-import TierData from "../../Components/TierData";
+import Tier from "../../components/Tiers/";
+import BasicTier from "../../components/basicTier";
+import ProTier from "../../components/ProTier";
+import Loader from "../../components/Loaders";
+import TierData from "../../components/tierData";
 import { Paper, Grid,Button, TextField  } from "@material-ui/core";
 import MaterialUIForm from "react-material-ui-form";
 import {styles,settings,containerStyle,loaderStyle,containerColor} from './styles'
