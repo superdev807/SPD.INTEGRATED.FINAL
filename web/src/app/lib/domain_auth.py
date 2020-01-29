@@ -30,9 +30,6 @@ class controller_subscriptions(object):
 		return mongo_client.local_spd[ self.domain.__class__.__name__ ]
 	
 	def meta_cols(self):
-
-		pdb.set_trace()
-		
 		imported_values = [ 
 			i for i in self._q().find({ 'type': 'cols' }) 
 		][0]['values']
@@ -86,9 +83,9 @@ class controller_pharmacy(object):
 		return access
 	
 	def get_pharmacies(self, email, access, records):
-		RETRIEVE = { 'type': { '$nin': [ 'cols', 'access' ] }}
 		PROJECT = None
 		DATA = None
+		RETRIEVE = { 'type': { '$nin': [ 'cols', 'access' ] }}
 
 		if records=='*':
 			pass
@@ -138,6 +135,7 @@ class controller_hashes(object):
 # ----------------------------------------------------------
 #  ! AUTHORIZE !
 class auth_resp(object):
+	
 	def __init__(self):
 		self.attrs = {}
 
@@ -158,6 +156,7 @@ class auth_resp(object):
 		return obj, trans_id
 
 class controller_auth_resp(object):
+	
 	def __init__(self):
 		self.domain = auth_resp()
 	
@@ -183,6 +182,7 @@ class controller_auth_resp(object):
 # ----------------------------------------------------------
 # ! MemberShips !
 class membership(object):
+	
 	def __init__(self):
 		self.attrs = {}
 
@@ -193,6 +193,7 @@ class membership(object):
 			'is_self_admin': None,
 			'is_group_admin': None
 		}
+		
 		return filter(lambda i: i not in _.keys(), values)
 
 	def map(self, params):
@@ -221,6 +222,7 @@ class membership(object):
 		return list(self.map({}).keys())
 
 class controller_membership(object):
+	
 	def __init__(self):
 		self.domain = membership()
 
@@ -243,10 +245,8 @@ class controller_membership(object):
 		return str(remaining.days).replace('-','')
 
 	def retrieve_users_for_membership(self, ident_as_str):
-		pdb.set_trace()
-		admin = None
 		users = []
-		
+		admin = None
 		memb = self._q().find_one({ '_id': uuid.UUID( ident_as_str ) })
 
 		if memb['created_admin_id'] is not None:
@@ -260,14 +260,10 @@ class controller_membership(object):
 				user = controller.get_user_by_id( _uuid )
 				users.append( user[0] )
 
-		pdb.set_trace()
 		return admin, users
 
 	def create(self, params):
 		control_sub = controller_subscriptions()
-
-		pdb.set_trace()
-
 		sub = control_sub.look_up( int(params['pg_id']), uuid.UUID(params['sub_id']))
 
 		days = sub['calendar_days']
@@ -280,11 +276,12 @@ class controller_membership(object):
 		new_memb = self._q().insert_one(
 			self.domain.map( params )
 		)
+		
 		return new_memb.acknowledged, new_memb.inserted_id
 
 	def check_memb_obj(self, group_name, group_password):
+		
 		message = 'Need A Unique Group Name And Password'
-
 		group = list( self._q().find({ 'name': group_name }))
 		pswd = list( self._q().find({ 'password': group_password }))
 
@@ -313,6 +310,7 @@ class controller_membership(object):
 # ----------------------------------------------------------
 # ! Users !
 class user(object):
+	
 	def __init__(self, as_user=None):
 		self.attrs = {}
 		self.as_user = as_user
@@ -350,12 +348,14 @@ class user(object):
 			'is_self_admin': None,
 			'is_group_admin': None
 		}
+		
 		return filter( lambda i: i not in _.keys(), values )
 
 	def web_values(self):
 		return self.web_meta_drop( list( self.map({}).keys() ) )
 
 class controller_user(object):
+	
 	def __init__(self):
 		self.domain = user()
 		self.memb_control = controller_membership()
@@ -384,11 +384,8 @@ class controller_user(object):
 			else:
 				obj[k] = v
 
-		pdb.set_trace()
+		new_group_admin_user = self._q().insert_one( self.domain.map( obj ) )
 
-		new_group_admin_user = self._q().insert_one( 
-			self.domain.map( obj ) 
-		)
 		return new_group_admin_user.acknowledged, new_group_admin_user.inserted_id
 		
 
@@ -406,11 +403,8 @@ class controller_user(object):
 			else:
 				obj[k] = v
 
-		pdb.set_trace()
+		new_user = self._q().insert_one( self.domain.map( obj ) )
 		
-		new_user = self._q().insert_one( 
-			self.domain.map( obj ) 
-		)
 		return new_user.acknowledged, new_user.inserted_id
 
 	def get_user_by_id(self, ident):
@@ -457,8 +451,7 @@ class controller_user(object):
 			records = '*'
 		else:
 			records = int(records)
-		pdb.set_trace()
-		
+
 		return records, access, memb_id, user[0]['is_group_admin']
 
 
@@ -471,7 +464,9 @@ class controller_user(object):
 					'first_access': False 
 				} 
 			})
+			
 			return True, email
+		
 		except:
 			return False, email
 
@@ -481,7 +476,9 @@ class controller_user(object):
 				{ 'Email': email }, 
 				{ '$set': { 'is_logged_in': True } }
 			)
+			
 			return True, email
+		
 		except:
 			return False, email
 
@@ -495,10 +492,13 @@ class controller_user(object):
 			'Group_Name': group_name,
 			'Group_Password': group_password
 		}
+		
 		# user = list( self._q().find_one( _user, project ))
 		user = list( self._q().find( _user ))
+		
 		if len(user) == 1:
 			_logged_in, _email = self.first_time_login( user[0]['Email'] )
+		
 		return _logged_in, _user, _email
 
 
@@ -529,8 +529,10 @@ class controller_user(object):
 		_user = self._q().find_one({
 			'$OR': { 'Email': email, '_id': ident }
 		})
+		
 		if _user is None:
 			return False
+		
 		else:
 			return True 
 
