@@ -41,21 +41,26 @@ def _login():
 			
 			else:
 				user_controller = controller_user()
+
+				records, access, memb_id, is_group_admin = user_controller.get_view_meta( body['Email'] )
+
 				logged_in, user, email = user_controller.loggin_first_access_group(
 					body['Email'], body['Password'], body['Group_Name'], body['Group_Password']
 				)
-				
+
 				if logged_in:
-					records, access = user_controller.get_view_meta( body['Email'] )
+					memb_controller = controller_membership()
+
+					resp['days_remaining'] = memb_controller.days_remaining( memb_id )
 					resp['records'] = records
 					resp['access'] = access
 					resp['email'] = body['Email']
+					resp['membership_id'] = str(memb_id)
+					resp['is_group_admin'] = is_group_admin
 					resp['logged_in'] = True
-					
-					pdb.set_trace()
 					return jsonify(resp), 200
-				
 				else:
+					resp = copy(ERROR)
 					resp['email'] = body['Email']
 					resp['logged_in'] = False
 					return jsonify(resp), 500
@@ -63,11 +68,11 @@ def _login():
 		elif all( item in MUST for item in body_keys):
 
 			user_controller = controller_user()
-			memb_controller = controller_membership()
 
 			user = user_controller.get_user_info_by_email( body['Email'] )
 			if len(user) == 1:
 				user = user[0]
+				
 				if user['belongs_group'] and user['first_access']:
 					resp = copy(ERROR)
 					resp['message'] = ' Need First Time Group Login !'
@@ -75,30 +80,33 @@ def _login():
 					resp['logged_in'] = False
 					return jsonify(resp), 500
 
-				# elif not memb_controller.is_current( memb_id ):
-				# 	resp['message'] = ' Your Membership is Not Current !'
-				# 	resp['logged_in'] = False
-				# 	return jsonify(resp), 500
-
 				else:
 					if body['Password'] == user['Password']:
 
 						user_controller = controller_user()
-						logged_in, email = user_controller.loggin( body['Email'] )
-						if logged_in:
-							records, access = user_controller.get_view_meta( body['Email'] )
-							resp['records'] = records
-							resp['access'] = access
-							resp['email'] = email
-							resp['logged_in'] = True
+						memb_controller = controller_membership()
 
-							pdb.set_trace()
-							return jsonify(resp), 200
-						
+						records, access, memb_id, is_group_admin = user_controller.get_view_meta( body['Email'] )
+						is_current = memb_controller.is_current( memb_id )
+
+						if is_current:
+							logged_in, email = user_controller.loggin( body['Email'] )
+							
+							if logged_in:
+								resp['days_remaining'] = memb_controller.days_remaining( memb_id )
+								resp['records'] = records
+								resp['access'] = access
+								resp['email'] = email
+								resp['membership_id'] = str(memb_id)
+								resp['is_group_admin'] = is_group_admin
+								resp['logged_in'] = True
+								return jsonify(resp), 200
+
 						else:
-							resp['email'] = email
+							resp = copy(ERROR)
+							resp['message'] = ' Your Membership is Not Current !'
 							resp['logged_in'] = False
-							return jsonify(resp), 500 
+							return jsonify(resp), 500
 					else:
 						resp = copy(ERROR)
 						resp['message'] = 'That Password is Incorrect'

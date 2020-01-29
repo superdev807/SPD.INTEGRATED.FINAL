@@ -13,6 +13,8 @@ from lib.domain_auth import controller_subscriptions
 from lib.domain_auth import controller_pharmacy
 from lib.domain_auth import controller_auth_resp
 
+from lib.domain_auth import controller_membership
+
 
 
 from flask import Blueprint, Response, request, abort, jsonify
@@ -25,6 +27,30 @@ client = MongoClient('mongodb://localhost:27017/')
 
 # -------------------------------------------------
 _spd = Blueprint('spd', __name__)
+
+@_spd.route('/membership_users', methods=['POST'])
+def get_users_by_memb_id():
+	try:
+		resp = copy(SUCCESS)
+		body = request.get_json()
+		body_keys = body.keys()
+		
+		MUST = [ 'memb_id' ]
+		if all( item in MUST for item in body_keys):
+			memb_controller = controller_membership()
+			admin, users = memb_controller.retrieve_users_for_membership( body['memb_id'] )
+			resp['users'] = users
+			resp['admin_user'] = admin
+			return jsonify(resp), 200
+		else:
+			resp = copy(ERROR)
+			resp['message'] = 'Required Body Keys :'
+			resp['keys'] = MUST	
+			return jsonify(resp), 500
+	except:
+		resp = copy(ERROR)
+		resp['message'] = sys.exc_info()[0]
+		return jsonify(resp), 500
 
 @_spd.route('/completed', methods=['POST'])
 def transaction():
@@ -208,7 +234,7 @@ def pharmacies():
 			else:
 				resp = copy(ERROR)
 				resp['message'] = 'Incorrect Body. Keys must be strings'
-				resp['keys'] = 'The value to [access] but be an integer'
+				resp['keys'] = 'The value to [records] but be an integer'
 				return jsonify(resp), 500
 		
 		else:

@@ -224,7 +224,6 @@ class controller_membership(object):
 	def __init__(self):
 		self.domain = membership()
 
-
 	def _q(self):
 		return mongo_client.local_spd[ self.domain.__class__.__name__ ]
 
@@ -236,9 +235,33 @@ class controller_membership(object):
 
 	def is_current(self, ident):
 		memb = self._q().find_one({ '_id': ident })
-		pdb.set_trace()
+		return memb['created_at_datetime'] <= dt.now() <= memb['expires_on_as_dt']
 
-		pass
+	def days_remaining(self, ident):
+		memb = self._q().find_one({ '_id': ident })
+		remaining = dt.now() - memb['expires_on_as_dt']
+		return str(remaining.days).replace('-','')
+
+	def retrieve_users_for_membership(self, ident_as_str):
+		pdb.set_trace()
+		admin = None
+		users = []
+		
+		memb = self._q().find_one({ '_id': uuid.UUID( ident_as_str ) })
+
+		if memb['created_admin_id'] is not None:
+			controller = controller_user()
+			user = controller.get_user_by_id( memb['created_admin_id'] )
+			admin = user[0]
+
+		if memb['created_user_ids'] is not None:
+			for _uuid in memb['created_user_ids']:
+				controller = controller_user()
+				user = controller.get_user_by_id( _uuid )
+				users.append( user[0] )
+
+		pdb.set_trace()
+		return admin, users
 
 	def create(self, params):
 		control_sub = controller_subscriptions()
@@ -286,9 +309,6 @@ class controller_membership(object):
 			{ '_id': memb_id },
 			{ '$set': {'created_user_ids': user_ids, 'created_admin_id': admin_id } }
 		)
-		
-
-		
 
 # ----------------------------------------------------------
 # ! Users !
@@ -393,6 +413,22 @@ class controller_user(object):
 		)
 		return new_user.acknowledged, new_user.inserted_id
 
+	def get_user_by_id(self, ident):
+		return list( self._q().find(
+			{ '_id': ident },
+			{
+				'Email': 1,
+			    'Password': 1,
+			    'First_Name': 1,
+			    'Last_Name': 1,
+			    'Company_Name': 1,
+			    'Company_Title' : 1,
+			    'Years_Of_Experience': 1,
+			    'Group_Name': 1,
+			    'Group_Password': 1
+		    }
+		 ))
+
 	def user_search(self, attr, value):
 		return [ self._q().find({ attr: value }) ]
 
@@ -415,17 +451,20 @@ class controller_user(object):
 
 		records = subscription[0]['Records_id']
 		access = subscription[0]['access_type']
+		memb_id = memb[0]['_id']
+		
 		if records == 'Entire DB':
 			records = '*'
 		else:
 			records = int(records)
 		pdb.set_trace()
-		return records, access
+		
+		return records, access, memb_id, user[0]['is_group_admin']
 
 
 	def first_time_login(self, email):
 		try:
-			self._q().update_one( 
+			self._q().update( 
 				{ 'Email': email }, 
 				{ '$set': { 
 					'is_logged_in': True, 
@@ -447,8 +486,6 @@ class controller_user(object):
 			return False, email
 
 	def loggin_first_access_group(self, email, password, group_name, group_password):
-		pdb.set_trace()
-		
 		# project = { k:1 for k in self.domain.web_values() }
 		_logged_in = False
 		_email = email

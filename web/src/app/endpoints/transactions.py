@@ -20,23 +20,40 @@ client = MongoClient('mongodb://localhost:27017/')
 # -------------------------------------------------
 _spd = Blueprint('spd', __name__)
 
+@_spd.route('/membership_users', methods=['POST'])
+def get_users_by_memb_id():
+	try:
+		resp = copy(SUCCESS)
+		body = request.get_json()
+		body_keys = body.keys()
+		
+		MUST = [ 'memb_id' ]
+		if all( item in MUST for item in body_keys):
+			memb_controller = controller_membership()
+			admin, users = memb_controller.retrieve_users_for_membership( body['memb_id'] )
+			resp['users'] = { 'admin_user': None, 'users': None }
+			return jsonify(resp), 200
+		else:
+			resp = copy(ERROR)
+			resp['message'] = 'Required Body Keys :'
+			resp['keys'] = MUST	
+			return jsonify(resp), 500
+	except:
+		resp = copy(ERROR)
+		resp['message'] = sys.exc_info()[0]
+		return jsonify(resp), 500
+
 @_spd.route('/completed', methods=['POST'])
 def authorize():
 	try:
 		resp = copy(SUCCESS)
 		auth_resp = body['transaction']
-		# set unique ids
-		# create 
-
-		
 
 		return jsonify(resp), 500
 	except:
 		resp = copy(ERROR)
 		resp['message'] = sys.exc_info()[0]
 		return jsonify(resp), 500
-
-
 
 @_spd.route('/subscriptions', methods=['GET'])
 def _subscripts():
